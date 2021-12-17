@@ -1,0 +1,28 @@
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+
+file1 = open('DocClassPos.txt', 'r')
+sentences = file1.readlines()
+pos_count = 0
+neg_count=0
+nut_count=0
+
+ 
+
+analyzer = SentimentIntensityAnalyzer()
+for sentence in sentences:
+    sentiment_dict = analyzer.polarity_scores(sentence)
+    print("\n Sentence=",sentence, "Dictinary=",sentiment_dict)
+    if sentiment_dict['compound'] >= 0.05 :
+            pos_count=pos_count+1
+            print(" A Poistive Sentence")
+                  
+    elif sentiment_dict['compound'] <= - 0.05 :
+            neg_count=neg_count+1
+            print(" A Negative Sentence")      
+
+    else :    
+            nut_count=nut_count+1
+            print(" A Neutral Sentence") 
+            
+print("\n Overall Classification Pos=",pos_count, " Negative=",neg_count, " Neutral=",nut_count)

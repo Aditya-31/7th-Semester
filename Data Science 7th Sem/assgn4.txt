@@ -1,0 +1,91 @@
+import numpy
+import pandas as pd 
+import matplotlib.pyplot as plt
+import stemgraphic #pip install stemgraphic
+
+
+#1 Simple summaries
+speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+x = numpy.mean(speed)
+print(x)
+x = numpy.median(speed)
+print(x)
+x = numpy.std(speed) # standard deviation
+print(x)
+x = numpy.percentile(speed, 75) #percentile
+print(x)
+
+#plot 2:
+x = numpy.array([0, 1, 2, 3])
+y = numpy.array([10, 20, 30, 40])
+
+plt.plot(x,y)
+plt.show()
+
+#3 histo
+x = numpy.random.normal(170, 10, 250)
+
+plt.hist(x)
+plt.show() 
+
+#4
+x = numpy.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = numpy.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+
+font1 = {'family':'serif','color':'blue','size':20}
+font2 = {'family':'serif','color':'darkred','size':15}
+
+plt.title("Sports Watch Data", fontdict = font1)
+plt.xlabel("Average Pulse", fontdict = font2)
+plt.ylabel("Calorie Burnage", fontdict = font2)
+
+plt.plot(x, y)
+plt.show()
+
+#5
+data = {"country": ["Brazil", "Russia", "India", "China", "South Africa"], 
+       "capital": ["Brasilia", "Moscow", "New Dehli", "Beijing", "Pretoria"], 
+       "area": [8.516, 17.10, 3.286, 9.597, 1.221], 
+       "population": [200.4, 143.5, 1252, 1357, 52.98] } 
+  
+data_table = pd.DataFrame(data) 
+print(data_table) 
+
+
+#6
+data = [16, 25, 47, 56, 23, 45, 19, 55, 44, 27] 
+  
+# calling stem_graphic with required parameters, 
+# data and scale 
+stemgraphic.stem_graphic(data, scale = 10) 
+
+
+#7
+data = [['E001', 'M', 34, 123, 'Normal', 350], 
+        ['E002', 'F', 40, 114, 'Overweight', 450], 
+        ['E003', 'F', 37, 135, 'Obesity', 169], 
+        ['E004', 'M', 30, 139, 'Underweight', 189], 
+        ['E005', 'F', 44, 117, 'Underweight', 183], 
+        ['E006', 'M', 36, 121, 'Normal', 80], 
+        ['E007', 'M', 32, 133, 'Obesity', 166], 
+        ['E008', 'F', 26, 140, 'Normal', 120], 
+        ['E009', 'M', 32, 133, 'Normal', 75], 
+        ['E010', 'M', 36, 133, 'Underweight', 40] ] 
+  
+# 8 dataframe created with 
+# the above data array 
+df = pd.DataFrame(data, columns = ['EMPID', 'Gender',  
+                                    'Age', 'Sales', 
+                                    'BMI', 'Income'] ) 
+  
+df.plot.bar() 
+print("\n\n\n\n")
+
+# 9 pie
+y = numpy.array([35, 25, 25, 15])
+mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
+
+plt.pie(y, labels = mylabels)
+plt.legend()
+plt.show() 
